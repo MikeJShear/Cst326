@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+
 public class ScoreBoard : MonoBehaviour
 {
 
@@ -15,6 +17,9 @@ public class ScoreBoard : MonoBehaviour
     public GameObject winner1; // winner Message
     public GameObject winner2; // winner Message
     public AudioSource Goal;
+
+    public GameManager newDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +49,23 @@ public class ScoreBoard : MonoBehaviour
             SetCountText(); 
             CheckWin();
         }
+
+        else if(other.gameObject.CompareTag("PowerUp1"))
+        {
+            powerUp1();
+        }
+
+        else if(other.gameObject.CompareTag("PowerUp2"))
+        {
+            powerUp2();
+        }
+
+        else if(other.gameObject.CompareTag("PowerUp3"))
+        {
+            powerUp3();
+        }
+
+
     }
 
     void SetCountText()
@@ -66,4 +88,30 @@ public class ScoreBoard : MonoBehaviour
             winner2.SetActive(true);
         }
     }
-}
+
+
+    void powerUp1() // power Up 1 sets scores equal
+    {
+        if(Player1Score > Player2Score)
+        {
+        Player2Score = Player1Score; // power Up 1 sets scores equal higer score
+        }
+
+        else if(Player1Score > Player2Score)
+        {
+        Player1Score = Player2Score; // power Up 1 sets scores equal higer score
+        }
+        SetCountText(); 
+    }
+
+
+    void powerUp2()  // Player 1 win
+    {
+        winner1.SetActive(true);
+    }
+
+    void powerUp3() // player 2 win
+    {
+        winner2.SetActive(true);
+    }
+    
