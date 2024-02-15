@@ -115,3 +115,4 @@ public class ScoreBoard : MonoBehaviour
         winner2.SetActive(true);
     }
     
+}
