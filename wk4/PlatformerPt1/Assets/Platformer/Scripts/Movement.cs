@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -66,9 +67,6 @@ public class Movement : MonoBehaviour
             
             //rbody.velocity = rbody.velocity.normalized * maxSpeed;
         }
-
-       
-
-       
     }
+    
 }
