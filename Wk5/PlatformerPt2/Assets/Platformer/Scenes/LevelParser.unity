@@ -510,6 +510,7 @@ MonoBehaviour:
   questionBoxPrefab: {fileID: 2504500889841268910, guid: fb32b2d8f18f79043a5a76b0478d47a2, type: 3}
   stonePrefab: {fileID: 3579063974266445367, guid: 3cb62482e60aae446a90c1e413cd4a82, type: 3}
   coinPrefab: {fileID: 3470464950410684812, guid: 5128cb9b2cbc7ae42922d3663cf7f13c, type: 3}
+  waterPrefab: {fileID: 6648080816850585659, guid: ad7751d8b85496241933cbe8f95f96d1, type: 3}
   environmentRoot: {fileID: 0}
 --- !u!1 &510716869
 GameObject:
