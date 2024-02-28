@@ -16,14 +16,14 @@ public float score = 0f;
     {
         Debug.Log("Trigger entered: " + other.gameObject.name);
 
-        if(other.gameObject.CompareTag("Brick"))
-        {
-            score +=100;
-            other.gameObject.SetActive(false);
-            SetCountText();
-        }
+        // if(other.gameObject.CompareTag("Brick"))
+        // {
+        //     score +=100;
+        //     other.gameObject.SetActive(false);
+        //     SetCountText();
+        // }
 
-        else if(other.gameObject.CompareTag("Coin"))
+        if(other.gameObject.CompareTag("coin"))
         {
             other.gameObject.SetActive(false);
             score += 100;
