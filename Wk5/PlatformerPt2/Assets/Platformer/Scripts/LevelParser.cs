@@ -11,6 +11,10 @@ public class LevelParser : MonoBehaviour
     public GameObject stonePrefab;
     public GameObject coinPrefab;
     public GameObject waterPrefab;
+    public GameObject flagPrefab;
+    public GameObject polePrefab;
+    public GameObject grassPrefab;
+    public GameObject earthPrefab;
     public Transform environmentRoot;
 
     // --------------------------------------------------------------------------
@@ -99,6 +103,31 @@ public class LevelParser : MonoBehaviour
                 {
                     Vector3 newPos = new Vector3(col,row,0f);
                     GameObject newObj3 = Instantiate(waterPrefab,newPos,Quaternion.identity,environmentRoot);
+                }
+
+
+                if (letter =='f')
+                {
+                    Vector3 newPos = new Vector3(col,row,0f);
+                    GameObject newObj3 = Instantiate(flagPrefab,newPos,Quaternion.identity,environmentRoot);
+                }
+
+                if (letter =='p')
+                {
+                    Vector3 newPos = new Vector3(col,row,0f);
+                    GameObject newObj3 = Instantiate(polePrefab,newPos,Quaternion.identity,environmentRoot);
+                }
+                
+                if (letter =='g')
+                {
+                    Vector3 newPos = new Vector3(col,row,0f);
+                    GameObject newObj3 = Instantiate(grassPrefab,newPos,Quaternion.identity,environmentRoot);
+                }
+
+                if (letter =='e')
+                {
+                    Vector3 newPos = new Vector3(col,row,0f);
+                    GameObject newObj3 = Instantiate(earthPrefab,newPos,Quaternion.identity,environmentRoot);
                 }
                 
 

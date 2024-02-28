@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638441012166295845
-    m_Hash: 2398667294
+      ticks: 638446690809859802
+    m_Hash: 2024576662
   m_LockFileStatus:
     m_FilePath: C:/Users/mshea/Desktop/Cst326/Wk5/PlatformerPt2/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638441012166485336
-    m_Hash: 3305993201
+      ticks: 638446690809869776
+    m_Hash: 2713313816
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
