@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using JetBrains.Annotations;
 
 
 public class Movement : MonoBehaviour
@@ -19,12 +20,12 @@ public class Movement : MonoBehaviour
     public float coinsTotal = 0f;
     public float score = 0f;
 
-    public float acceleration = 10f;
+    private float acceleration = 10f;
     public float maxSpeed = 10f;
     public float jumpImpulse = 10f;
     public float jumpBoost;
 
-    public GameObject brick;
+    public float speed;
 
     public bool isGrounded;           // true or false is grounded
     Ray upRay;
@@ -46,18 +47,39 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float horizontalMovement = Input.GetAxis("Horizontal");
         Rigidbody rbody = GetComponent<Rigidbody>();
-
         rbody.velocity += Vector3.right * horizontalMovement * Time.deltaTime * acceleration;
+        
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+           acceleration = 200f;
+        }
+
+        else
+            {
+                acceleration = 10f;
+            }
         
 
         Collider col = GetComponent<Collider>();
 
+    
 
+// ******************************* Animations
+        GetComponent<Animator>().SetFloat("speed",Math.Abs(speed)); // for walk animation
+        speed = rbody.velocity.x; // speed on ground
+
+
+        Animator anim = GetComponent<Animator>();
+        anim.SetBool("in air",!isGrounded);
+
+        //Animator
+//*******************************  Animations
         CheckForColliders();
 
-
+//************************RayCast
         Vector3 startPoint = transform.position;                    // create ray start point
         Vector3 endPoint = startPoint + Vector3.down * 2f;          // Create ray end
 
@@ -68,7 +90,7 @@ public class Movement : MonoBehaviour
 
         upRay = new Ray(transform.position,Vector3.up);
         downRay = new Ray(transform.position, Vector3.down);
-
+// raycast^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) 
         {
             rbody.AddForce(Vector3.up * jumpImpulse,ForceMode.Impulse);
@@ -90,6 +112,9 @@ public class Movement : MonoBehaviour
             
             //rbody.velocity = rbody.velocity.normalized * maxSpeed;
         }
+
+        float yaw = (rbody.velocity.x > 0) ? 90 : -90;
+        transform.rotation = Quaternion.Euler(0f,yaw,0f);
     }
 
 private void CheckForColliders()
@@ -147,5 +172,5 @@ private void CheckForColliders()
         coins.text = "Coins: " +coinsTotal.ToString();
         
     }
-    
+
 }

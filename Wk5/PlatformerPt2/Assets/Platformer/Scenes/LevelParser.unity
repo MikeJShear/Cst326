@@ -1252,11 +1252,10 @@ MonoBehaviour:
   goal: {fileID: 1143303449}
   coinsTotal: 1
   score: 1
-  acceleration: 10
-  maxSpeed: 10
+  maxSpeed: 200
   jumpImpulse: 10
   jumpBoost: 10
-  brick: {fileID: 0}
+  speed: 0
   isGrounded: 0
 --- !u!114 &1149430488
 MonoBehaviour:
@@ -1468,6 +1467,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Mario
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1a1085e67e82b1e459c585a38a858083, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3941b2b7435dfe747aa94d0957256d7a, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 1a1085e67e82b1e459c585a38a858083, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1513,7 +1520,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2623401b04a885d4984aa11ebfcf32f0, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
