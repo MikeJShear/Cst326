@@ -7,6 +7,11 @@ TagManager:
   - wall
   - Left Wall
   - Right Wall
+  - Invader1
+  - Invader2
+  - Invader3
+  - Invader4
+  - Invader5
   layers:
   - Default
   - TransparentFX

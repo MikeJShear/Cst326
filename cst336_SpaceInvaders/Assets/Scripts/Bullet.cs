@@ -19,6 +19,39 @@ public class Bullet : MonoBehaviour
     private void Fire()
     {
       myRigidbody2D.velocity = Vector2.up * speed; 
-      Debug.Log("Wwweeeeee");
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+            if(other.gameObject.CompareTag("Invader1"))
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Invader1 hit");
+            }
+        
+            if(other.gameObject.CompareTag("Invader2"))
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Invader2 hit");
+            }
+
+            if(other.gameObject.CompareTag("Invader3"))
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Invader3 hit");
+            }
+
+            if(other.gameObject.CompareTag("Invader4"))
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Invader4 hit");
+            }
+
+            if(other.gameObject.CompareTag("Invader5"))
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Invader5 hit");
+            }
+
     }
 }

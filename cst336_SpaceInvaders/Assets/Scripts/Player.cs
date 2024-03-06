@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
   public GameObject bullet;
 
-
+  public float speed = 5f;
 
 
   public Transform shottingOffset;
@@ -28,19 +28,19 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-          transform.Translate(new Vector3(500*Time.deltaTime,0,0)); // transform player position right
+          transform.Translate(new Vector3(speed*Time.deltaTime,0,0)); // transform player position right
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-          transform.Translate(new Vector3(-500*Time.deltaTime,0,0)); // transform player position left
+          transform.Translate(new Vector3(-speed*Time.deltaTime,0,0)); // transform player position left
         }
 
 
-      if (Input.GetKeyDown(KeyCode.Space)) // fires bullet
+      if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) // fires bullet
       {
         GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity); // creates bullet
-        Destroy(shot, 3f);  // destroys bullet
+        Destroy(shot, 7f);  // destroys bullet
       }
 
 
