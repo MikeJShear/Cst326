@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
   public GameObject bullet;
-  public float acceleration = .1f;
-  private Rigidbody2D rb; // declare rb as 2d rigid body
+
+
 
 
   public Transform shottingOffset;
@@ -24,16 +24,16 @@ public class Player : MonoBehaviour
     void Update()
     {
       // Player movement
-        rb = GetComponent<Rigidbody2D>(); // get component from game object
+        
         
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-          rb.AddForce(Vector2.right * acceleration,ForceMode2D.Impulse);// moves player to right
+          transform.Translate(new Vector3(500*Time.deltaTime,0,0)); // transform player position right
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-          rb.AddForce(Vector2.left * acceleration,ForceMode2D.Impulse);// moves player to right
+          transform.Translate(new Vector3(-500*Time.deltaTime,0,0)); // transform player position left
         }
 
 

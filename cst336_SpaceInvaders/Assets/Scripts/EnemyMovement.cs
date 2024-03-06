@@ -7,10 +7,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    
-    public float timer;
-    public float acceleration = .005f;
-    private Rigidbody2D rb; // declare rb as 2d rigid body
+    public float invaderSpeed = .5f;
+    private bool moveInvaderRight = true; // alternates between true and false
 
     void Start()
     {
@@ -20,29 +18,34 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb = GetComponent<Rigidbody2D>(); // get component from game object
-        timer += Time.deltaTime;
+         if(moveInvaderRight) // when moveInvaderRight true
+         {
+            transform.Translate(new Vector3(1*Time.deltaTime,0,0)); //moveInvaderRight 
+         }
+
+         if(moveInvaderRight == false)  // when moveInvaderRight false
+         {
+            transform.Translate(new Vector3(-1*Time.deltaTime,0,0)); // move invader left
+         }
         
-         Vector2 movementRight = Vector2.right * timer*acceleration;
-         rb.AddForce(movementRight,ForceMode2D.Impulse);// moves object to right
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
 
         
             if(other.gameObject.CompareTag("Left Wall"))
             {
-                Debug.Log(" Left Wall");
-                Vector2 movementRight = Vector2.right * timer*acceleration;
-                rb.AddForce(movementRight,ForceMode2D.Impulse);// moves object to right
+                Debug.Log("Left Wall"); //debug
+                moveInvaderRight = true;  // moveInvaderRight true (change Direction)
+                transform.Translate(new Vector3(0,-1,0)); // moves enemy down
             }
         
-            else if(other.gameObject.CompareTag("Right Wall"))
+            if(other.gameObject.CompareTag("Right Wall"))
             {
-                Debug.Log(" Right Wall");
-                Vector2 movementLeft = Vector2.left * timer*acceleration;
-                rb.AddForce(movementLeft,ForceMode2D.Impulse);// moves object to right
+                Debug.Log(" Right Wall"); //debug
+                moveInvaderRight = false; // moveInvaderRight false (change Direction)
+                transform.Translate(new Vector3(0,-1,0)); // moves enemy down
             }
 
     }
