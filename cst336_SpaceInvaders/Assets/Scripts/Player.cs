@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class Player : MonoBehaviour
 {
   public GameObject bullet;
-
+ 
+  public TextMeshProUGUI GameOver;
   public float playerMoveSpeed = 5f;
 
 
@@ -43,6 +45,14 @@ public class Player : MonoBehaviour
         Destroy(shot, 5f);  // destroys bullet
       }
     }
-
+    void OnTriggerEnter(Collider other)
+    {
+            if(other.gameObject.CompareTag("enemyBullet"))
+            {
+                    GameOver.text = "Game Over";
+                    gameObject.SetActive(false);
+                    Debug.Log("Game Over");
+            }
+    }
     
 }

@@ -18,11 +18,11 @@ public class Bunker : MonoBehaviour
 
          void OnTriggerEnter(Collider other)
     {
-            if(other.gameObject.CompareTag("Bullet"))
+            if(other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("enemyBullet"))
             {
                     gameObject.SetActive(false);
                     other.gameObject.SetActive(false);
-                    Debug.Log("Bunker");
+                    
             }
     }
 }

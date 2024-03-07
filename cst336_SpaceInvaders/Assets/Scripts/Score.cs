@@ -77,6 +77,6 @@ public class Score : MonoBehaviour
 
     void SetScoreText()
     {
-        totalScore.text = ""+ score.ToString();
+        totalScore.text = ""+ score.ToString("0000");
     }
 }

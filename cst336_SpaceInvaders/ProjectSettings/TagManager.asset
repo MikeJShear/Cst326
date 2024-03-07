@@ -14,6 +14,8 @@ TagManager:
   - Invader5
   - Bullet
   - bunker
+  - enemyBullet
+  - GameStop
   layers:
   - Default
   - TransparentFX
