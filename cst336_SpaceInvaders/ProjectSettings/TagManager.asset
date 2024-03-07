@@ -12,6 +12,8 @@ TagManager:
   - Invader3
   - Invader4
   - Invader5
+  - Bullet
+  - bunker
   layers:
   - Default
   - TransparentFX

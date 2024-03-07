@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
   public GameObject bullet;
 
-  public float speed = 5f;
+  public float playerMoveSpeed = 5f;
 
 
-  public Transform shottingOffset;
+  public Transform shoottingOffset;
     // Update is called once per frame
 
 
@@ -26,23 +27,22 @@ public class Player : MonoBehaviour
       // Player movement
         
         
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-          transform.Translate(new Vector3(speed*Time.deltaTime,0,0)); // transform player position right
+          transform.position += Vector3.right * playerMoveSpeed*Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
         {
-          transform.Translate(new Vector3(-speed*Time.deltaTime,0,0)); // transform player position left
+          transform.position += Vector3.left * playerMoveSpeed*Time.deltaTime;
         }
 
-
-      if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) // fires bullet
+      if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)|| Input.GetMouseButtonDown(1)) // fires bullet
       {
-        GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity); // creates bullet
-        Destroy(shot, 7f);  // destroys bullet
+        GameObject shot = Instantiate(bullet, shoottingOffset.position, Quaternion.identity); // creates bullet
+        Destroy(shot, 5f);  // destroys bullet
       }
-
-
     }
+
+    
 }

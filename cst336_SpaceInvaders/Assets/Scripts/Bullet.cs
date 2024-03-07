@@ -1,57 +1,33 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using TMPro;
 
-[RequireComponent(typeof(Rigidbody2D))] //technique for making sure there isn't a null reference during runtime if you are going to use get component
+[RequireComponent(typeof(Rigidbody))] //technique for making sure there isn't a null reference during runtime if you are going to use get component
 public class Bullet : MonoBehaviour
 {
-  private Rigidbody2D myRigidbody2D;
+  private Rigidbody myRigidbody;
 
   public float speed = 5;
-    // Start is called before the first frame update
+
+  public float score = 0;
+  
+  
+
+
     void Start()
     {
-      myRigidbody2D = GetComponent<Rigidbody2D>();
+      myRigidbody = GetComponent<Rigidbody>();
       Fire();
     }
 
     // Update is called once per frame
     private void Fire()
     {
-      myRigidbody2D.velocity = Vector2.up * speed; 
+      myRigidbody.velocity = Vector3.up * speed; 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-            if(other.gameObject.CompareTag("Invader1"))
-            {
-                Destroy(this.gameObject);
-                Debug.Log("Invader1 hit");
-            }
-        
-            if(other.gameObject.CompareTag("Invader2"))
-            {
-                Destroy(this.gameObject);
-                Debug.Log("Invader2 hit");
-            }
 
-            if(other.gameObject.CompareTag("Invader3"))
-            {
-                Destroy(this.gameObject);
-                Debug.Log("Invader3 hit");
-            }
-
-            if(other.gameObject.CompareTag("Invader4"))
-            {
-                Destroy(this.gameObject);
-                Debug.Log("Invader4 hit");
-            }
-
-            if(other.gameObject.CompareTag("Invader5"))
-            {
-                Destroy(this.gameObject);
-                Debug.Log("Invader5 hit");
-            }
-
-    }
+   
 }
