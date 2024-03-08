@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
   public TextMeshProUGUI GameOver;
   public float playerMoveSpeed = 5f;
 
+  private AudioSource audioData;
 
   public Transform shoottingOffset;
     // Update is called once per frame
@@ -18,7 +19,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-      
+      audioData = GetComponent<AudioSource>();
+      GameOver.gameObject.SetActive(true);
     }
 
 
@@ -47,12 +49,14 @@ public class Player : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-            if(other.gameObject.CompareTag("enemyBullet"))
-            {
-                    GameOver.text = "Game Over";
-                    gameObject.SetActive(false);
-                    Debug.Log("Game Over");
-            }
+          if(other.gameObject.CompareTag("enemyBullet"))
+          {
+                audioData.Play();
+                GameOver.text = "Game Over";
+                GameOver.gameObject.SetActive(true);
+                gameObject.SetActive(false);
+                Debug.Log("Game Over");
+          }
     }
     
 }
