@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using TMPro;
 
 
 
@@ -14,26 +14,43 @@ public class EnemyMovement : MonoBehaviour
     private bool moveInvaderRight = true; // alternates between true and false
 
     private Component[] children;
+    public TextMeshProUGUI killedInvaders;
 
+    public TextMeshProUGUI remainingInvaders;
+    private float invadersHit = 0;
+    private float invadersRemaining = 0;
     private int invaderCount = 0;
-
 
     void Start()
     {
-        children = gameObject.GetComponentsInChildren<Component>();
-        invaderCount = children.Length;
+        children = gameObject.GetComponentsInChildren<Rigidbody>();
+        invaderCount = children.Length-1;
+        // Debug.Log("count!: " + invaderCount);
+    }
+
+    void checkInvaders()
+    {
+        children = gameObject.GetComponentsInChildren<Rigidbody>();
+        if (invadersRemaining != children.Length-1)
+        {
+            increaseSpeed();
+            updateCounters();
+        }
     }
 
     void increaseSpeed()
     {
-        children = gameObject.GetComponentsInChildren<Component>();
-        if (invaderCount != children.Length)
-        {
-            invaderCount = children.Length;
-            invaderSpeed+=.001f;
-            Debug.Log("invader speed: " + invaderSpeed.ToString());
-        }
+        invaderSpeed+=.001f;
+        Debug.Log("invader speed: " + invaderSpeed.ToString());
+    }
+
+    void updateCounters()
+    {
         
+        invadersRemaining = children.Length-1;
+        invadersHit = invaderCount - invadersRemaining;
+        killedInvaders.text = "Total Invaders Hit!: "+invadersHit.ToString("0000");
+        remainingInvaders.text = "Invaders Remaining!: "+invadersRemaining.ToString("0000");
     }
 
     // Update is called once per frame
@@ -49,7 +66,7 @@ public class EnemyMovement : MonoBehaviour
             transform.Translate(new Vector3(-1*invaderSpeed,0,0)); // move invader left
          }
 
-         increaseSpeed();
+         checkInvaders();
     }
 
     void OnTriggerEnter(Collider other)
