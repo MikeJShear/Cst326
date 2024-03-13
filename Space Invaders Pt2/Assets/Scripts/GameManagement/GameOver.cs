@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    AudioSource audio;
 
-    void Start()
-    {
-        audio =gameObject.GetComponent<AudioSource>();
-        Debug.Log("start in gameOver");
-    }
+
 
     // Update is called once per frame
     void Update()

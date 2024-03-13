@@ -8,19 +8,20 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
   public GameObject bullet;
- 
   public TextMeshProUGUI GameOver;
   public float playerMoveSpeed = 5f;
 
-  private AudioSource audioData;
 
+  public AudioClip explosionClip;
+
+  public float timer;
   public Transform shoottingOffset;
     // Update is called once per frame
 
 
     void Start()
     {
-      audioData = GetComponent<AudioSource>();
+
       GameOver.gameObject.SetActive(true);
     }
 
@@ -42,23 +43,33 @@ public class Player : MonoBehaviour
           transform.position += Vector3.left * playerMoveSpeed*Time.deltaTime;
         }
 
-      if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)|| Input.GetMouseButtonDown(1)) // fires bullet
-      {
-        GameObject shot = Instantiate(bullet, shoottingOffset.position, Quaternion.identity); // creates bullet
-        Destroy(shot, 5f);  // destroys bullet
-      }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)|| Input.GetMouseButtonDown(1)) // fires bullet
+        {
+          GameObject shot = Instantiate(bullet, shoottingOffset.position, Quaternion.identity); // creates bullet
+          Destroy(shot, 5f);  // destroys bullet
+        }
+
     }
     void OnTriggerEnter(Collider other)
     {
           if(other.gameObject.CompareTag("enemyBullet"))
           {
-                audioData.Play();
-                GameOver.text = "Game Over";
-                GameOver.gameObject.SetActive(true);
-                gameObject.SetActive(false);
-                Debug.Log("Game Over");
-                SceneManager.LoadScene("Credits");
+
+            GameOver.text = "Game Over";
+            GameOver.gameObject.SetActive(true);
+            AudioSource src = GetComponent<AudioSource>();
+            src.PlayOneShot(explosionClip);
+
+              InvokeRepeating("GameOverFunc", 3.0f, 1f); // repeat invokes a function starting at 5 seconds , every 7 seconds
+              
+            
           }
+    }
+
+    void GameOverFunc()
+    {
+      gameObject.SetActive(false);
+      SceneManager.LoadScene("Credits");
     }
     
 }

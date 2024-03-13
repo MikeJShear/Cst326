@@ -21,10 +21,14 @@ public class EnemyMovement : MonoBehaviour
     private float invadersRemaining = 0;
     private int invaderCount = 0;
 
+ 
     void Start()
-    {
+    {   
+
         children = gameObject.GetComponentsInChildren<Rigidbody>();
         invaderCount = children.Length-1;
+
+        
         // Debug.Log("count!: " + invaderCount);
     }
 
@@ -40,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
 
     void increaseSpeed()
     {
+        
         invaderSpeed+=.001f;
         Debug.Log("invader speed: " + invaderSpeed.ToString());
     }
@@ -51,6 +56,7 @@ public class EnemyMovement : MonoBehaviour
         invadersHit = invaderCount - invadersRemaining;
         killedInvaders.text = "Total Invaders Hit!: "+invadersHit.ToString("0000");
         remainingInvaders.text = "Invaders Remaining!: "+invadersRemaining.ToString("0000");
+        
     }
 
     // Update is called once per frame

@@ -8,11 +8,13 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-
     public TextMeshProUGUI totalScore;
     public TextMeshProUGUI highScoreText;
     private float score = 0;
     public float highScore = 0;
+
+    public AudioClip explosionClip;
+
 
 
     // Start is called before the first frame update
@@ -36,8 +38,13 @@ public class Score : MonoBehaviour
 
      void OnTriggerEnter(Collider other)
     {
+
+        
             if(other.gameObject.CompareTag("Bullet"))
             {
+               
+                
+
                 if(gameObject.tag.Contains("1"))
                 {
                     score +=40;
@@ -62,10 +69,11 @@ public class Score : MonoBehaviour
                 {
                     score+=10;
                 }
-                
-                gameObject.SetActive(false);
                 other.gameObject.SetActive(false);
-                
+                AudioSource src = GetComponent<AudioSource>();
+                src.PlayOneShot(explosionClip);
+
+                InvokeRepeating("Deleted", 1.0f, 1f); // repeat invokes a function starting at 5 seconds , every 7 seconds
                 SetScoreText();
             }
     }
@@ -80,5 +88,10 @@ public class Score : MonoBehaviour
 
         totalScore.text = ""+ score.ToString("0000");
         highScoreText.text = highScore.ToString("0000");
+    }
+
+    void Deleted()
+    {
+        gameObject.SetActive(false);
     }
 }
