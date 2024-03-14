@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
       // Player movement
         
         
+        
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
           transform.position += Vector3.right * playerMoveSpeed*Time.deltaTime;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)|| Input.GetMouseButtonDown(1)) // fires bullet
         {
+          GetComponent<Animator>().SetTrigger("Shoot Trigger");
           GameObject shot = Instantiate(bullet, shoottingOffset.position, Quaternion.identity); // creates bullet
           Destroy(shot, 5f);  // destroys bullet
         }
@@ -52,9 +54,10 @@ public class Player : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+          
           if(other.gameObject.CompareTag("enemyBullet"))
           {
-
+            GetComponent<Animator>().SetTrigger("Explode");
             GameOver.text = "Game Over";
             GameOver.gameObject.SetActive(true);
             AudioSource src = GetComponent<AudioSource>();

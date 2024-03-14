@@ -69,6 +69,10 @@ public class Score : MonoBehaviour
                 {
                     score+=10;
                 }
+                GetComponent<Animator>().SetTrigger("hit");
+                GetComponent<Animator>().SetTrigger("bang");
+                GetComponent<Animator>().SetTrigger("Bang");
+                GetComponent<Animator>().SetTrigger("bigBoom");
                 other.gameObject.SetActive(false);
                 AudioSource src = GetComponent<AudioSource>();
                 src.PlayOneShot(explosionClip);
