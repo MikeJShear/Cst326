@@ -136,7 +136,38 @@ MonoBehaviour:
   partToRotate: {fileID: 2206912804369054162}
   turrentSpeed: 10
   bulletPrefab: {fileID: 4152756100061619481, guid: 5d158a7a372ff5844b5aa2d0f5efc15a, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 4271469704226611266}
+--- !u!1 &906654325891752437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4271469704226611266}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4271469704226611266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906654325891752437}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.0025884204, z: -0, w: 0.99999666}
+  m_LocalPosition: {x: -0.07700188, y: 0.575, z: 3.034002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2206912804369054162}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3581552481498765649
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4271469704226611266}
   - {fileID: 1630606333840804861}
   m_Father: {fileID: 2621911114670728276}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
