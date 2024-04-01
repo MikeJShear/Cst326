@@ -902,6 +902,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8413820160522694694293b8ebb5e2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardTurret:
+    prefab: {fileID: 712449724186689559, guid: 2d6c6113ac7f81644b20fa689cb015f0, type: 3}
+    cost: 100
+  missileLauncher:
+    prefab: {fileID: 9155196838628040589, guid: 190c358a8ee6dd54288b6c46fe32aa68, type: 3}
+    cost: 250
+  ultimate:
+    prefab: {fileID: 0}
+    cost: 0
 --- !u!1001 &136727497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2559,6 +2568,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 052796e81a627b942bba0dbcd8576a9a, type: 3}
+    - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2576,7 +2593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchasedAnotherTurret
+      value: selectMisselLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2588,8 +2605,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5137124090578310191, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_Name
-      value: AnotherTurrent
+      value: MisselLauncherButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6896759210044053961, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 052796e81a627b942bba0dbcd8576a9a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4310,7 +4331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -4506,7 +4527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5137124090578310191, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_Name
-      value: UltimateTurrents
+      value: UltimateTurrentsButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5784,6 +5805,7 @@ GameObject:
   - component: {fileID: 841319906}
   - component: {fileID: 841319905}
   - component: {fileID: 841319907}
+  - component: {fileID: 841319908}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -5835,8 +5857,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standardTurretPrefab: {fileID: 712449724186689559, guid: 2d6c6113ac7f81644b20fa689cb015f0, type: 3}
-  anotherTurretPrefab: {fileID: 0}
+  MisselLauncherPrefab: {fileID: 9155196838628040589, guid: 190c358a8ee6dd54288b6c46fe32aa68, type: 3}
   ultimateTurretPrefab: {fileID: 0}
+--- !u!114 &841319908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841319904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8adb146380cf39241a87c2546a53e19b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMoney: 400
 --- !u!1001 &846902007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18035,6 +18070,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4031368903900740800, guid: 16dae008c15d01c4a8f812af2d48b9e5, type: 3}
   m_PrefabInstance: {fileID: 2117702016}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122985238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6896759210044053961, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
+  m_PrefabInstance: {fileID: 6772314283977895380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2126945167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18566,6 +18612,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 2122985238}
+    - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -18583,7 +18633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseStandardTurret
+      value: selectStandardTurret
       objectReference: {fileID: 0}
     - target: {fileID: 5039357870990277170, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -18595,7 +18645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5137124090578310191, guid: 2a876cd86a1b1424097bd30a861290a0, type: 3}
       propertyPath: m_Name
-      value: StandardTurrent
+      value: StandardTurrentButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
