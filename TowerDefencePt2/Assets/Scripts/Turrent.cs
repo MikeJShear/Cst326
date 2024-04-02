@@ -18,6 +18,7 @@ public class Turrent : MonoBehaviour
     [Header("Laser")]
     public bool useLaser = false;
     public LineRenderer lineRenderer;
+    public ParticleSystem ImpactEffect;
 
 
     [Header("Required Unity Fields")]
@@ -65,6 +66,7 @@ public class Turrent : MonoBehaviour
                 if(lineRenderer.enabled)
                     {
                         lineRenderer.enabled = false;
+                        ImpactEffect.Stop();
                     }
             }
             return;
@@ -117,8 +119,16 @@ public class Turrent : MonoBehaviour
         if(!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;
+            ImpactEffect.Play();
         }
         lineRenderer.SetPosition(0,firePoint.position);
         lineRenderer.SetPosition(1,target.position);
+
+        
+        Vector3 dir = firePoint.position - target.position ;
+        
+        ImpactEffect.transform.rotation = Quaternion.LookRotation(dir);
+        ImpactEffect.transform.position = target.position + dir.normalized;
+        
     }
 }
