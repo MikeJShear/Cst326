@@ -6,12 +6,18 @@ public class Turrent : MonoBehaviour
 {
     
     
-    [Header("Attributes")]
+    [Header("Standard")]
 
     public float range = 15f;
+
+    [Header("Bullets")]
     public float fireRate = 1f;
     private float fireCountDown = 0f;
     public string enemyTag = "Enemy";
+
+    [Header("Laser")]
+    public bool useLaser = false;
+    public LineRenderer lineRenderer;
 
 
     [Header("Required Unity Fields")]
@@ -20,6 +26,8 @@ public class Turrent : MonoBehaviour
     private Transform target;
     public GameObject bulletPrefab;
     public Transform firePoint;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -52,20 +60,30 @@ public class Turrent : MonoBehaviour
     {
         if(target == null)
         {
+            if(useLaser)
+            {
+                if(lineRenderer.enabled)
+                    {
+                        lineRenderer.enabled = false;
+                    }
+            }
             return;
         }
-
-        Vector3 dir = target.position-transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation,lookRotation,Time.deltaTime * turrentSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f,rotation.y,0f);
-
-        if (fireCountDown <=0)
+        LockOnTarget();
+        if(useLaser)
         {
+            Laser();
+        }
+       else
+       {
+            if (fireCountDown <=0)
+            {
             Shoot();
             fireCountDown = 1f/fireRate;
-        }
-        fireCountDown -=Time.deltaTime;
+            }
+            fireCountDown -=Time.deltaTime;
+       }
+        
     }
 
     void Shoot()
@@ -84,5 +102,23 @@ public class Turrent : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,range);
+    }
+
+    void LockOnTarget()
+    {
+        Vector3 dir = target.position-transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation,lookRotation,Time.deltaTime * turrentSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f,rotation.y,0f);
+    }
+
+    void Laser()
+    {
+        if(!lineRenderer.enabled)
+        {
+            lineRenderer.enabled = true;
+        }
+        lineRenderer.SetPosition(0,firePoint.position);
+        lineRenderer.SetPosition(1,target.position);
     }
 }
