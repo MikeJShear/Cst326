@@ -19,6 +19,8 @@ public class Turrent : MonoBehaviour
     public bool useLaser = false;
     public LineRenderer lineRenderer;
     public ParticleSystem ImpactEffect;
+    public Light impactLight;
+    public int damageOverTime = 2;
 
 
     [Header("Required Unity Fields")]
@@ -27,8 +29,10 @@ public class Turrent : MonoBehaviour
     private Transform target;
     public GameObject bulletPrefab;
     public Transform firePoint;
+    public float slowPercent = .5f;
 
-    
+    private Enemy targetEnemy;
+    public float slowAmount = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +58,12 @@ public class Turrent : MonoBehaviour
         if(nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<Enemy>();
+        }
+
+        else
+        {
+            target = null;
         }
     }
     // Update is called once per frame
@@ -65,8 +75,11 @@ public class Turrent : MonoBehaviour
             {
                 if(lineRenderer.enabled)
                     {
+                        
                         lineRenderer.enabled = false;
                         ImpactEffect.Stop();
+                        impactLight.enabled = false;
+                        
                     }
             }
             return;
@@ -116,10 +129,14 @@ public class Turrent : MonoBehaviour
 
     void Laser()
     {
+        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        targetEnemy.Slow(slowAmount);
+
         if(!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;
             ImpactEffect.Play();
+            impactLight.enabled = true;
         }
         lineRenderer.SetPosition(0,firePoint.position);
         lineRenderer.SetPosition(1,target.position);
@@ -131,4 +148,6 @@ public class Turrent : MonoBehaviour
         ImpactEffect.transform.position = target.position + dir.normalized;
         
     }
+
+
 }

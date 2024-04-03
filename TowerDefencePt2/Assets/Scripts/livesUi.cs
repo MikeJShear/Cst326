@@ -1,14 +1,13 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class livesUi : MonoBehaviour
-{
-   public TextMeshProUGUI livesText;
+public class LivesUI : MonoBehaviour {
 
-    // Update is called once per frame
-    void Update()
-    {
-        livesText.text = "Lives " + PlayerStats.Lives;
-    }
+	public TextMeshProUGUI livesText;
+
+	// Update is called once per frame
+	void Update () {
+		livesText.text = PlayerStats.Lives.ToString() + " LIVES";
+	}
 }
