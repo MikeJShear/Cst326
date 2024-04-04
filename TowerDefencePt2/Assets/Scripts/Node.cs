@@ -14,6 +14,8 @@ public class Node : MonoBehaviour
     private Color StartColor;
     public Vector3 positionOffset;
     BuildManager buildManager;
+
+    
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -31,13 +33,15 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        if(!buildManager.CanBuild)
-        {
-            return;
-        }
+        
         if(turret != null)
         {
-            Debug.Log("Remove Existing Structure");
+            buildManager.SelectNode(this);
+            return;
+        }
+        
+        if(!buildManager.CanBuild)
+        {
             return;
         }
 
@@ -65,11 +69,14 @@ public class Node : MonoBehaviour
         {
         rend.material.color = notEnoughMoneyColor;
         }
+
     }
 
     void OnMouseExit()
     {
         rend.material.color = StartColor;
     }
+
+    
 
 }
