@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
-    private bool gameEnd = false;
+
+    public GameObject gameOverUi;
+    public static bool gameEnd = false;
+
+    void Start()
+    {
+        gameEnd = false;
+    }
 
     void Update()
     {
         if(gameEnd)
         {
             return;
+        }
+
+        if(Input.GetKeyDown("e"))
+        {
+            EndGame();
         }
         
         if(PlayerStats.Lives <=0)
@@ -23,5 +35,6 @@ public class gameManager : MonoBehaviour
     {
         gameEnd = true;
         Debug.Log("Game Over!!!");
+        gameOverUi.SetActive(true);
     }
 }

@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 		health -= amount;
 		if (health <= 0 && !isDead)
 		{
-            PlayerStats.Money += worth;
+            
 			Die();
 		}
 	}
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 	{
 		isDead = true;
 
-		
+		PlayerStats.Money += worth;
 
         Debug.Log("Enemy died, money increased to: " + PlayerStats.Money); // Add this line
 

@@ -30,6 +30,7 @@ public class Turrent : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float slowPercent = .5f;
+    public int worth = 50;
 
     private Enemy targetEnemy;
     public float slowAmount = .5f;
@@ -79,7 +80,6 @@ public class Turrent : MonoBehaviour
                         lineRenderer.enabled = false;
                         ImpactEffect.Stop();
                         impactLight.enabled = false;
-                        
                     }
             }
             return;
@@ -105,6 +105,7 @@ public class Turrent : MonoBehaviour
     {
         GameObject bulletGo = (GameObject)Instantiate(bulletPrefab,firePoint.position,firePoint.rotation);
         bullet bullet = bulletGo.GetComponent<bullet>();
+        PlayerStats.Money += worth;
 
         if(bullet != null)
         {
