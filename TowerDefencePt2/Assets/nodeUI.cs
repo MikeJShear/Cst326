@@ -18,7 +18,8 @@ public TextMeshProUGUI upgradeCost;
 		{
 			upgradeCost.text = "$" + target.turretBlueprint.upgradeCost;
 			upgradeButton.interactable = true;
-		} else
+		} 
+        else
 		{
 			upgradeCost.text = "DONE";
 			upgradeButton.interactable = false;
